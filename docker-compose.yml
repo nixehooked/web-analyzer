@@ -1,0 +1,24 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./wes4fe-web-analyzer
+      dockerfile: DockerFile_front
+    ports:
+      - "3000:3000"
+    networks:
+      - local-network
+
+  backend:
+    build:
+      context: ./prescan_V2
+      dockerfile: DockerFile_back
+    ports:
+      - "5000:5000"
+    networks:
+      - local-network
+    depends_on:
+      - frontend
+
+networks:
+  local-network:
